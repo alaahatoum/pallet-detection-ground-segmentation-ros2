@@ -1,0 +1,17 @@
+# Ignore virtual environments
+venv/
+
+# Ignore dataset folders and images
+data/
+datasets/
+*.jpg
+*.png
+*.zip
+
+# Ignore Roboflow API keys or other secrets
+.env
+
+# Ignore system and cache files
+__pycache__/
+.DS_Store
+*.part

@@ -9,3 +9,5 @@ version = project.version(1)
 
 # Download the dataset in YOLOv8 format
 dataset = version.download("yolov8")
+
+# configuration allows for customization of the dataset download

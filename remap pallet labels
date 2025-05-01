@@ -1,0 +1,26 @@
+import os
+
+# the dataset comes with 5 classes but our modle only needs 1 class (pallet)
+# this script remaps the class ID of the pallet from 1 to 0
+
+LABELS_DIR = "industry_dataset3-1/valid/labels"  # change to your label folder (train/valid/test)
+#LABELS_DIR = "valid/labels"
+# or
+#LABELS_DIR = "test/labels"
+
+
+PALLET_CLASS_ID = "1"  # original class ID
+NEW_CLASS_ID = "0"     # new class ID
+
+for filename in os.listdir(LABELS_DIR):
+    if filename.endswith(".txt"):
+        path = os.path.join(LABELS_DIR, filename)
+        new_lines = []
+        with open(path, "r") as f:
+            for line in f:
+                parts = line.strip().split()
+                if parts[0] == PALLET_CLASS_ID:
+                    parts[0] = NEW_CLASS_ID
+                    new_lines.append(" ".join(parts))
+        with open(path, "w") as f:
+            f.write("\n".join(new_lines) + ("\n" if new_lines else ""))

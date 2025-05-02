@@ -8,6 +8,7 @@ datasets/
 *.png
 *.zip
 *.txt
+*.cache
 # Ignore Roboflow API keys or other secrets
 .env
 

@@ -1,0 +1,13 @@
+names:
+- pallet
+
+nc: 1
+roboflow:
+  license: CC BY 4.0
+  project: industry_dataset3
+  url: https://universe.roboflow.com/robot-potk5/industry_dataset3/dataset/1
+  version: 1
+  workspace: robot-potk5
+test: ../test/images
+train: ../train/images
+val: ../valid/images

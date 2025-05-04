@@ -1,3 +1,5 @@
+#Used this code on google colab to train model as I have no access to GPU
+
 import os
 import ultralytics
 from ultralytics import YOLO
@@ -7,9 +9,9 @@ from ultralytics import YOLO
 # -----------------------------
 MODEL_TYPE = "yolov8n.pt"  # use yolov8s.pt or yolov8m.pt if you have a stronger machine
 DATA_YAML = "/home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/industry_dataset3-1/data.yaml"    # must point to your dataset YAML
-EPOCHS = 50
+EPOCHS = 10
 IMAGE_SIZE = 640
-BATCH_SIZE = 16
+BATCH_SIZE = 8
 
 PROJECT_DIR = "outputs"
 RUN_NAME = "pallet_detector"

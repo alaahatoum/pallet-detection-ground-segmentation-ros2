@@ -1,10 +1,13 @@
 from inference_sdk import InferenceHTTPClient
+from dotenv import load_dotenv
 import os
 import cv2
 import random
 
+load_dotenv()
+
 # ==== CONFIG ====
-API_KEY = "ROBOFLOW_API_KEY"  
+API_KEY = os.getenv("ROBOFLOW_API_KEY")
 MODEL_ID = "pallet_model_v2/1" 
 INPUT_DIR = "data/raw"
 OUTPUT_DIR = "data/raw"

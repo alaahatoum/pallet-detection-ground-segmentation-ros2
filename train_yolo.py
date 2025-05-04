@@ -8,7 +8,11 @@ from ultralytics import YOLO
 # CONFIGURATION
 # -----------------------------
 MODEL_TYPE = "yolov8n.pt"  # use yolov8s.pt or yolov8m.pt if you have a stronger machine
+
+#used industry dataset as it was more robust and the bounding boxes were more accurate
 DATA_YAML = "/home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/industry_dataset3-1/data.yaml"    # must point to your dataset YAML
+
+
 EPOCHS = 10
 IMAGE_SIZE = 640
 BATCH_SIZE = 8

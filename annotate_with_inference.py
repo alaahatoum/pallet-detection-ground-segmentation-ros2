@@ -4,10 +4,10 @@ import cv2
 import random
 
 # ==== CONFIG ====
-API_KEY = "qGpYhxLCtK9qm6NSVpra"  
+API_KEY = "ROBOFLOW_API_KEY"  
 MODEL_ID = "pallet_model_v2/1" 
 INPUT_DIR = "data/raw"
-OUTPUT_DIR = "yolo_annotations"
+OUTPUT_DIR = "data/raw"
 CLASS_NAME = "pallet"  
 
 NUM_TO_VISUALIZE = 5

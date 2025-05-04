@@ -1,7 +1,7 @@
 from roboflow import Roboflow
 
 # Initialize Roboflow with your API key
-rf = Roboflow(api_key="qGpYhxLCtK9qm6NSVpra")
+rf = Roboflow(api_key="")
 
 # Connect to your project
 project = rf.workspace("robot-potk5").project("industry_dataset3")

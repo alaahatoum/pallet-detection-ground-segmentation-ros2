@@ -8,7 +8,7 @@ load_dotenv()
 
 # ==== CONFIG ====
 API_KEY = os.getenv("ROBOFLOW_API_KEY")
-MODEL_ID = "pallet_model_v2/1" 
+MODEL_ID = "pallet_model_v2/1"
 INPUT_DIR = "data/raw"
 OUTPUT_DIR = "data/raw"
 CLASS_NAME = "pallet"  

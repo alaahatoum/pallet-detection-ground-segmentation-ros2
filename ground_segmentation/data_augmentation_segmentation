@@ -1,0 +1,117 @@
+import os
+import cv2
+import numpy as np
+import albumentations as A
+from glob import glob
+import random
+
+# ==== CONFIG ====
+IMG_DIR = "ground_segmentation/data"
+LBL_DIR = "ground_segmentation/labels"
+OUT_IMG_DIR = "augmented/data"
+OUT_LBL_DIR = "augmented/labels"
+CLASS_ID = 0
+
+os.makedirs(OUT_IMG_DIR, exist_ok=True)
+os.makedirs(OUT_LBL_DIR, exist_ok=True)
+def augmentation():
+    # ==== AUGMENTATION PIPELINE ====
+    transform = A.Compose([
+        A.HorizontalFlip(p=0.5),
+        A.VerticalFlip(p=0.2),
+        A.RandomBrightnessContrast(p=0.2),
+        A.Rotate(limit=15, p=0.3),
+        A.Resize(640, 640)
+    ], keypoint_params=A.KeypointParams(format='xy', remove_invisible=False))
+
+    # ==== HELPER ====
+    def read_yolo_polygon(label_path, img_w, img_h):
+        polygons = []
+        with open(label_path, "r") as f:
+            for line in f:
+                parts = line.strip().split()
+                coords = list(map(float, parts[1:]))
+                points = [(x * img_w, y * img_h) for x, y in zip(coords[::2], coords[1::2])]
+                polygons.append(points)
+        return polygons
+
+    def write_yolo_polygon(polygons, output_path, img_w, img_h):
+        with open(output_path, "w") as f:
+            for poly in polygons:
+                if len(poly) < 3:
+                    continue
+                line = f"{CLASS_ID}"
+                for x, y in poly:
+                    line += f" {x / img_w:.6f} {y / img_h:.6f}"
+                f.write(line + "\n")
+
+    # ==== MAIN LOOP ====
+    for img_path in glob(os.path.join(IMG_DIR, "*.*g")):
+        base_name = os.path.splitext(os.path.basename(img_path))[0]
+        label_path = os.path.join(LBL_DIR, base_name + ".txt")
+        if not os.path.exists(label_path):
+            continue
+
+        image = cv2.imread(img_path)
+        height, width = image.shape[:2]
+
+        # Read original polygons
+        polygons = read_yolo_polygon(label_path, width, height)
+
+        for aug_id in range(3):  # Generate 3 augmentations per image
+            flat_keypoints = [pt for poly in polygons for pt in poly]
+            if not flat_keypoints:
+                continue
+
+            try:
+                augmented = transform(image=image, keypoints=flat_keypoints)
+            except Exception as e:
+                print(f"Skipping {base_name} due to error: {e}")
+                continue
+
+            aug_img = augmented["image"]
+            aug_kps = augmented["keypoints"]
+
+            # Rebuild polygons from flat list
+            poly_lengths = [len(poly) for poly in polygons]
+            new_polygons = []
+            idx = 0
+            for length in poly_lengths:
+                new_poly = aug_kps[idx:idx + length]
+                if len(new_poly) >= 3:
+                    new_polygons.append(new_poly)
+                idx += length
+
+            # Save image & label
+            aug_img_path = os.path.join(OUT_IMG_DIR, f"{base_name}_aug{aug_id}.jpg")
+            aug_lbl_path = os.path.join(OUT_LBL_DIR, f"{base_name}_aug{aug_id}.txt")
+            cv2.imwrite(aug_img_path, aug_img)
+            write_yolo_polygon(new_polygons, aug_lbl_path, aug_img.shape[1], aug_img.shape[0])
+            print(f"✓ Saved: {aug_img_path}")
+
+# ==== VISUALIZATION ====
+NUM_TO_SHOW = 5
+augmented_files = glob(os.path.join(OUT_IMG_DIR, "*.jpg"))
+samples_to_show = random.sample(augmented_files, min(NUM_TO_SHOW, len(augmented_files)))
+
+for img_path in samples_to_show:
+    base_name = os.path.splitext(os.path.basename(img_path))[0]
+    label_path = os.path.join(OUT_LBL_DIR, base_name + ".txt")
+
+    image = cv2.imread(img_path)
+    h, w = image.shape[:2]
+
+    if not os.path.exists(label_path):
+        continue
+
+    with open(label_path, "r") as f:
+        for line in f:
+            parts = line.strip().split()
+            coords = list(map(float, parts[1:]))
+            pts = [(int(x * w), int(y * h)) for x, y in zip(coords[::2], coords[1::2])]
+            if len(pts) >= 3:
+                cv2.polylines(image, [np.array(pts, dtype=np.int32)], isClosed=True, color=(0, 255, 0), thickness=2)
+
+    cv2.imshow(f"Augmented: {base_name}", image)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()

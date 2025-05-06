@@ -56,64 +56,6 @@ image_paths = glob(os.path.join(INPUT_DIR, "*.jpg"))
 preview_paths = []
 
 print("Augmenting dataset...")
-import os
-import cv2
-import random
-from glob import glob
-from tqdm import tqdm
-import albumentations as A
-import matplotlib.pyplot as plt
-
-# === CONFIG ===
-INPUT_DIR = "data/raw"              # folder with original images + YOLO .txt files
-OUTPUT_DIR = "augmented_dataset"       # folder to save augmented images + labels
-AUG_PER_IMAGE = 3                      # how many augmentations per image
-VISUALIZE_SAMPLES = 5                 # number of samples to preview
-
-# === Create output folder ===
-os.makedirs(OUTPUT_DIR, exist_ok=True)
-
-# === Define augmentation pipeline ===
-transform = A.Compose([
-    A.HorizontalFlip(p=0.5),
-    A.RandomBrightnessContrast(p=0.5),
-    A.Rotate(limit=15, p=0.5),
-    A.RandomScale(scale_limit=0.2, p=0.3),
-],
-    bbox_params=A.BboxParams(format='yolo', label_fields=['class_labels'])
-)
-
-# === Helper to load YOLO labels ===
-def load_yolo_labels(txt_path):
-    bboxes = []
-    class_labels = []
-    with open(txt_path, "r") as f:
-        for line in f:
-            parts = line.strip().split()
-            if len(parts) == 5:
-                cls, x, y, w, h = parts
-                try:
-                    # Ensure class is an integer
-                    cls = int(float(cls))  # Convert to float first, then to int
-                    bboxes.append([float(x), float(y), float(w), float(h)])
-                    class_labels.append(cls)
-                except ValueError:
-                    print(f"Skipping invalid class label in {txt_path}: {cls}")
-    return bboxes, class_labels
-
-
-# === Helper to save YOLO labels ===
-def save_yolo_labels(txt_path, bboxes, class_labels):
-    with open(txt_path, "w") as f:
-        for bbox, cls in zip(bboxes, class_labels):
-            line = f"{cls} " + " ".join(f"{x:.6f}" for x in bbox)
-            f.write(line + "\n")
-
-# === Main Loop ===
-image_paths = glob(os.path.join(INPUT_DIR, "*.jpg"))
-preview_paths = []
-
-print("Augmenting dataset...")
 for img_path in tqdm(image_paths):
     basename = os.path.splitext(os.path.basename(img_path))[0]
     label_path = os.path.join(INPUT_DIR, f"{basename}.txt")

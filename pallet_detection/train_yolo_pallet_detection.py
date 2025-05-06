@@ -36,18 +36,5 @@ def train():
     print(f"[📂] Weights saved to: {results.save_dir}/weights/best.pt")
     print(f"[📊] Training curves saved to: {results.save_dir}/results.png")
 
-    # ----------------------------------------
-    # Evaluate the model on the validation set
-    # ----------------------------------------
-    print("\n[INFO] Running validation to get metrics...")
-    metrics = model.val()
-    print("\n[📈] Evaluation Metrics:")
-    print(f"mAP@0.5: {metrics.box.map50:.4f}")
-    print(f"mAP@0.5:0.95: {metrics.box.map:.4f}")
-    print(f"mAP@0.75: {metrics.box.map75:.4f}")
-    print(f"Precision: {metrics.box.precision:.4f}")
-    print(f"Recall: {metrics.box.recall:.4f}")
-
-
 if __name__ == "__main__":
     train()

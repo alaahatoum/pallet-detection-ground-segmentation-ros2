@@ -6,10 +6,10 @@ from glob import glob
 import random
 
 # ==== CONFIG ====
-IMG_DIR = "ground_segmentation/data"
-LBL_DIR = "ground_segmentation/labels"
-OUT_IMG_DIR = "augmented/data"
-OUT_LBL_DIR = "augmented/labels"
+IMG_DIR = "/ground_segmentation/raw/data"
+LBL_DIR = "ground_segmentation/raw/labels"
+OUT_IMG_DIR = "ground_segmentation/augmented/data"
+OUT_LBL_DIR = "ground_segmentation/augmented/labels"
 CLASS_ID = 0
 
 os.makedirs(OUT_IMG_DIR, exist_ok=True)

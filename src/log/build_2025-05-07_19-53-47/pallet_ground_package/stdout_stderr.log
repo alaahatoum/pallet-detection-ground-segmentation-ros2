@@ -1,0 +1,35 @@
+running egg_info
+creating ../build/pallet_ground_package/pallet_ground_package.egg-info
+writing ../build/pallet_ground_package/pallet_ground_package.egg-info/PKG-INFO
+writing dependency_links to ../build/pallet_ground_package/pallet_ground_package.egg-info/dependency_links.txt
+writing entry points to ../build/pallet_ground_package/pallet_ground_package.egg-info/entry_points.txt
+writing requirements to ../build/pallet_ground_package/pallet_ground_package.egg-info/requires.txt
+writing top-level names to ../build/pallet_ground_package/pallet_ground_package.egg-info/top_level.txt
+writing manifest file '../build/pallet_ground_package/pallet_ground_package.egg-info/SOURCES.txt'
+reading manifest file '../build/pallet_ground_package/pallet_ground_package.egg-info/SOURCES.txt'
+writing manifest file '../build/pallet_ground_package/pallet_ground_package.egg-info/SOURCES.txt'
+running build
+running build_py
+creating /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/build/pallet_ground_package/build
+creating /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/build/pallet_ground_package/build/lib
+creating /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/build/pallet_ground_package/build/lib/pallet_ground_package
+copying pallet_ground_package/__init__.py -> /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/build/pallet_ground_package/build/lib/pallet_ground_package
+copying pallet_ground_package/pallet_ground_node.py -> /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/build/pallet_ground_package/build/lib/pallet_ground_package
+running install
+running install_lib
+creating /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/lib/python3.10/site-packages/pallet_ground_package
+copying /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/build/pallet_ground_package/build/lib/pallet_ground_package/__init__.py -> /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/lib/python3.10/site-packages/pallet_ground_package
+copying /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/build/pallet_ground_package/build/lib/pallet_ground_package/pallet_ground_node.py -> /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/lib/python3.10/site-packages/pallet_ground_package
+byte-compiling /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/lib/python3.10/site-packages/pallet_ground_package/__init__.py to __init__.cpython-310.pyc
+byte-compiling /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/lib/python3.10/site-packages/pallet_ground_package/pallet_ground_node.py to pallet_ground_node.cpython-310.pyc
+running install_data
+creating /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/share/ament_index
+creating /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/share/ament_index/resource_index
+creating /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/share/ament_index/resource_index/packages
+copying resource/pallet_ground_package -> /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/share/ament_index/resource_index/packages
+copying package.xml -> /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/share/pallet_ground_package
+running install_egg_info
+Copying ../build/pallet_ground_package/pallet_ground_package.egg-info to /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/lib/python3.10/site-packages/pallet_ground_package-0.0.0-py3.10.egg-info
+running install_scripts
+Installing pallet_ground_node script to /home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/install/pallet_ground_package/lib/pallet_ground_package
+writing list of installed files to '/home/alaa/Desktop/pallet-detection-ground-segmentation-ros2/src/build/pallet_ground_package/install.log'

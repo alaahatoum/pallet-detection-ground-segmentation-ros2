@@ -35,4 +35,4 @@ copy_files(train_files, 'train')
 copy_files(val_files, 'val')
 copy_files(test_files, 'test')
 
-print(f"✅ Dataset split complete: {len(train_files)} train, {len(val_files)} val, {len(test_files)} test.")
+print(f" Dataset split complete: {len(train_files)} train, {len(val_files)} val, {len(test_files)} test.")

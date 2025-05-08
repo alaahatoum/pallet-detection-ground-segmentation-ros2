@@ -100,7 +100,7 @@ for filename in os.listdir(INPUT_DIR):
 
     all_results.append((filename, image, preds))
 
-print(f"\n🔍 Showing {NUM_TO_VISUALIZE} randomly selected results for visual inspection...")
+print(f"\n Showing {NUM_TO_VISUALIZE} randomly selected results for visual inspection...")
 sampled = random.sample(all_results, min(NUM_TO_VISUALIZE, len(all_results)))
 
 for filename, img, preds in sampled:

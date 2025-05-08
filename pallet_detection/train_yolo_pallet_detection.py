@@ -18,7 +18,7 @@ RUN_NAME = "pallet_detector"
 # TRAINING
 # -----------------------------
 def train():
-    print(f"[INFO] Starting YOyuht67777LOv8 training on {DATA_YAML}...")
+    print(f"[INFO] Starting YOLOv8 training on {DATA_YAML}...")
 
     model = YOLO(MODEL_TYPE)
 
@@ -32,9 +32,9 @@ def train():
         verbose=True
     )
 
-    print(f"\n[✓] Training complete!")
-    print(f"[📂] Weights saved to: {results.save_dir}/weights/best.pt")
-    print(f"[📊] Training curves saved to: {results.save_dir}/results.png")
+    print(f"\n Training complete!")
+    print(f" Weights saved to: {results.save_dir}/weights/best.pt")
+    print(f" Training curves saved to: {results.save_dir}/results.png")
 
 if __name__ == "__main__":
     train()

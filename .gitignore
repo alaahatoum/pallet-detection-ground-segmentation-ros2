@@ -9,7 +9,7 @@ datasets/
 *.zip
 *.txt
 *.cache
-
+!requirements.txt
 # Ignore Roboflow API keys or other secrets
 .env
 

@@ -141,7 +141,7 @@ nav-msgs==4.2.3
 networkx==3.4.2
 nmea-msgs==2.1.0
 novatel-oem7-msgs==10.0.0
-numpy==2.2.5
+numpy==1.26.4
 nvidia-cublas-cu12==12.6.4.1
 nvidia-cuda-cupti-cu12==12.6.80
 nvidia-cuda-nvrtc-cu12==12.6.77
@@ -162,7 +162,6 @@ opencv-python==4.10.0.84
 # Editable install with no version control (osrf-pycommon==2.1.4)
 -e /root/ros2_humble/build/osrf_pycommon
 packaging==25.0
-pallet-ground-package==0.0.0
 pandas==2.2.3
 pcl-msgs==1.0.0
 pendulum-msgs==0.20.3
